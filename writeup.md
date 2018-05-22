@@ -1,5 +1,5 @@
 # **Finding Lane Lines on the Road** 
-
+***
 ## Pipeline Desription
 The pipeline includes 5 steps:
 1. Color selection
@@ -9,7 +9,6 @@ The pipeline includes 5 steps:
 5. Extrapolate the lines based on the calculate slopes and intercepts of lines
 
 ### Color Selection
--------------------
 
 #### Grayscale Color Selection
 I compare the default gray scale color selection with [HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) selection.
@@ -23,7 +22,6 @@ And the result after apply the HSL color selection. I select the white and yello
 Comparing to the grayscale, the HSL color selection helps seperate the traffic lines from the other elements in the images. 
 
 ### Edge Detection and Region Selection
----------------------------------------
 Next, I use the [Canny edge detection algorithm](https://en.wikipedia.org/wiki/Canny_edge_detector). This algorithm applies the gaussian smoothing and detect the edges based on the intensity gradients on the images. The low and high threshold are 80 and 160 resepectively.
 
 Since all the images are taken from a fixed angle camera, we can add a polygon with `cv2.fillPoly` to only consider the pixels in the region.
@@ -80,11 +78,10 @@ These are the results after appying the line detection and extrapolation:
 ![lines_after_average_extrapolate](images/lines_after_average_extrapolate.png)
 
 ## Reflection
--------------
 
 There are some issues in the current pipeline.
 
 One potential issue is many parts of the pipeline are simply hardcoded and only applicable to this specific task. For example in the color selection, the selection ranges for white and yellow are tuned by trial and error. To make it more robust, we can apply some machine learning models to self-select the ranges. And although the region of interest helps to improve the line detection in this task, this hard-coded polygon may not work when we analyze on the images taken from differnt camera angles.
 
-Another potential issue is the extrapolation method can be improved. From the video tests we can see that the straight line is not fitting well sometimes on curved lane lines. We can try [spline line](https://en.wikipedia.org/wiki/Spline_interpolation) to improve the line fitting. 
+Another potential issue is the extrapolation method can be improved. From the video tests we can see that the straight line is not fitting well sometimes on curved lane lines. We can try [spline interploation](https://en.wikipedia.org/wiki/Spline_interpolation) to improve the line fitting. 
 
