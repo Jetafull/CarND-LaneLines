@@ -1,5 +1,5 @@
 # **Finding Lane Lines on the Road** 
-***
+
 ## Pipeline Desription
 The pipeline includes 5 steps:
 1. Color selection
